@@ -1,0 +1,42 @@
+@import "normalize.css";
+
+:root {
+  --bg-color: #E7E7E7;
+  --primary-text: #3D3D3D;
+  /* --primary-color: #3E8989; */
+  --primary-color: #337171;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --bg-color: #292929;
+  --primary-text: #EBEBEB;
+  --primary-color: #9E70f3;
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Space Mono', sans-serif;
+
+  background-color: var(--bg-color);
+  color: var(--primary-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* body { */
+/*   font-family: 'Space Mono', sans-serif; */
+/*   background-color: var(--bg-color); */
+/*   background-image: radial-gradient(var(--primary-color) 1px, transparent 1px); */
+/*   background-size: 20px 20px; */
+/*   color: var(--primary-text); */
+/* } */
+
+a {
+  color: var(--primary-color);
+}

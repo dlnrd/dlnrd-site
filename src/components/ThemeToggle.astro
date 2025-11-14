@@ -1,0 +1,58 @@
+---
+
+---
+<button id="theme-toggle">
+
+<svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3d3d3d"><path d="M484-68.7q-86.35 0-161.91-32.89-75.55-32.9-131.58-88.92-56.02-56.03-88.92-131.58Q68.7-397.65 68.7-484q0-152.78 98.65-268.24Q266-867.7 415.65-895.26 402.74-794 430.04-697.24q27.31 96.76 98.87 168.33 71.57 71.56 168.05 98.02 96.48 26.45 197.17 17.5-26 149.09-141.67 246.89Q636.78-68.7 484-68.7Zm0-106q77.83 0 145.76-36.65Q697.69-248 740.13-313.7q-81.48-11.39-154.52-46.89-73.05-35.5-131.78-94.24-58.74-58.73-94.74-131.5-36-72.76-46.96-154.23-64.56 43-101 110.87Q174.7-561.83 174.7-484q0 129.35 89.97 219.33Q354.65-174.7 484-174.7Zm-30.17-280.13Z"/></svg>
+
+<svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#3d3d3d"><path d="M484-68.7q-86.35 0-161.91-32.89-75.55-32.9-131.58-88.92-56.02-56.03-88.92-131.58Q68.7-397.65 68.7-484q0-152.78 98.65-268.24Q266-867.7 415.65-895.26 402.74-794 430.04-697.24q27.31 96.76 98.87 168.33 71.57 71.56 168.05 98.02 96.48 26.45 197.17 17.5-26 149.09-141.67 246.89Q636.78-68.7 484-68.7Zm0-106q77.83 0 145.76-36.65Q697.69-248 740.13-313.7q-81.48-11.39-154.52-46.89-73.05-35.5-131.78-94.24-58.74-58.73-94.74-131.5-36-72.76-46.96-154.23-64.56 43-101 110.87Q174.7-561.83 174.7-484q0 129.35 89.97 219.33Q354.65-174.7 484-174.7Zm-30.17-280.13Z"/></svg>
+</button>
+
+
+<script>
+  const button = document.getElementById("theme-toggle");
+  const root = document.documentElement;
+  
+  function updateIcons(theme) {
+    document.querySelector(".icon-sun").style.display = theme === "light" ? "block" : "none";
+    document.querySelector(".icon-moon").style.display = theme === "dark" ? "block" : "none";
+  }
+  
+  // Load saved theme
+  const savedTheme = localStorage.getItem("theme") || "light";
+  root.setAttribute("data-theme", savedTheme);
+  updateIcons(savedTheme);
+  
+  // Toggle theme
+  button.addEventListener("click", () => {
+    const newTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    updateIcons(newTheme);
+  });
+</script>
+
+<style>
+  #theme-toggle {
+    background: none;
+    border: 0.2rem solid var(--primary-color);
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    align-items: center;
+  }
+  #theme-toggle svg{
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--primary-text)
+  }
+
+.icon-moon {
+  display: none;
+}
+.icon-moon {
+  display: none;
+}
+  
+</style>
+

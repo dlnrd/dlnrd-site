@@ -1,0 +1,78 @@
+---
+const { project } = Astro.props;
+---
+
+<article class="project-card">
+  <img src={project.data.image} alt={project.data.title} />
+  <h3>{project.data.title}</h3>
+  <p>{project.data.summary}</p>
+  <p>{project.id}</p>
+  <!-- <a href={`/projects/${project.slug}`}>Read more →</a> -->
+</article>
+
+<style>
+  .project-card {
+    /* background-color: var(--card-bg, #1e1e1e); */
+    background-color: var(--card-bg, #1e1e1e);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .project-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+    display: block;
+  }
+
+  .project-card h3 {
+    margin: 0.75rem 1rem 0.25rem 1rem;
+    font-size: 1.25rem;
+  }
+
+  .project-card p {
+    margin: 0 1rem 1rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--secondary-text, #ccc);
+  }
+
+  .project-card a {
+    margin: 0 1rem 1rem 1rem;
+    text-decoration: none;
+    color: var(--accent-color, #f39c12);
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .project-card a:hover {
+    color: var(--accent-color-hover, #e67e22);
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .projects {
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.1rem;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+    }
+  }
+
+</style>

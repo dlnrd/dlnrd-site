@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const { limit } = Astro.props || {};
+let projects = await getCollection('projects');
+
+if (limit) {
+  projects = projects.slice(0, limit);
+}
+---
+
+<section class="projects">
+  {projects.map(project => (
+    <ProjectCard project={project} />
+  ))}
+</section>
+
+<style>
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+</style>
