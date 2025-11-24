@@ -1,42 +1,57 @@
 @import "normalize.css";
+@import "./markdown.css";
 
-:root {
-  --bg-color: #E7E7E7;
+:root  {
+  --primary-bg: #E7E7E7;
+  --secondary-bg: #D2D2D2;
   --primary-text: #3D3D3D;
-  /* --primary-color: #3E8989; */
-  --primary-color: #337171;
+  --secondary-text: #525252;
+  --primary-color: #D9822B;
+  --secondary-color: #9E70F3; /* tmp */
+
 }
 
-/* Dark mode */
 [data-theme="dark"] {
-  --bg-color: #292929;
+  --primary-bg: #292929;
+  --secondary-bg: #3B3B3B;
   --primary-text: #EBEBEB;
-  --primary-color: #9E70f3;
+  --secondary-text: #D4D4D4;
+  --primary-color: #9E70F3;
+  --secondary-color: #D9822B; /* tmp */
 }
 
 * {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  /* transition: none; */
 }
 
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 
   font-family: 'Space Mono', sans-serif;
 
-  background-color: var(--bg-color);
+  background-color: var(--primary-bg);
   color: var(--primary-text);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* body { */
-/*   font-family: 'Space Mono', sans-serif; */
-/*   background-color: var(--bg-color); */
-/*   background-image: radial-gradient(var(--primary-color) 1px, transparent 1px); */
-/*   background-size: 20px 20px; */
-/*   color: var(--primary-text); */
-/* } */
+main {
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 1000px;
+  width: clamp(100%, 75vw, 75%);
+}
 
 a {
   color: var(--primary-color);
+}
+
+.breakbody {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }

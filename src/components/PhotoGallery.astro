@@ -1,0 +1,44 @@
+---
+import fs from 'fs';
+import path from 'path';
+
+const photosDir = path.resolve('./public/photos');
+
+const imageFiles = fs.readdirSync(photosDir)
+  .filter(file => /\.(jpe?g|png|gif|webp)$/i.test(file));
+---
+
+<div class="gallery">
+  {imageFiles.map(file => (
+    <img src={`/photos/${file}`} alt={file} loading="lazy" />
+  ))}
+</div>
+
+<style>
+.gallery {
+  width: 90vw;
+  max-width: 90vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 0;
+
+  column-count: 1;
+  column-gap: 0.75rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+@media (min-width: 800px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+.gallery img {
+  width: 100%;
+  display: block;
+  margin-bottom: 0.75rem;
+  break-inside: avoid; /* stops images crossing col boundries */
+  object-fit: cover; /* crop if needed but preserve aspect ratio, would rather not crop but works for now */
+}
+</style>

@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+
+
+const { limit } = Astro.props || {};
+
+const allPosts = await getCollection('posts');
+
+const posts = allPosts
+  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
+  .slice(0, limit);
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-GB', { 
+    year: "numeric",
+    month: "short", 
+    day: "numeric" 
+  });
+};
+---
+
+<div class="table-container">
+  <h3 class="list-title">Recent Posts:</h3>
+
+  {posts.length === 0 ? (
+    <p>No availabe posts.</p>
+  ) : (
+    <table>
+      {posts.map(post => (
+        <tr class="post-row">
+          <td class="post-title">
+            <a href={`/posts/${post.slug}/`}>{post.data.title}</a>
+          </td>
+
+          <td class="post-date">
+            {formatDate(post.data.date)}
+          </td>
+        </tr>
+      ))}
+    </table>
+  )}
+</div>
+
+<style>
+  .list-title {
+    color: var(--primary-text);
+    margin-bottom: 0rem;
+    /* text-align: center; */
+  }
+
+  td {
+    padding: 0.25rem 0;
+    vertical-align: top;
+  }
+
+  .post-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .post-title {
+    font-weight: 600;
+    white-space: nowrap;
+    flex-grow: 1;
+  }
+
+  .post-title a {
+    color: var(--primary-color);
+  }
+
+  .post-title a:hover {
+    background-color: var(--primary-color);
+    color: var(--primary-text);
+    text-decoration: none;
+  }
+
+  .post-date {
+    color: var(--secondary-text);
+    text-align: right;
+    font-size: 0.9rem;
+    padding-left: 3rem;
+  }
+</style>

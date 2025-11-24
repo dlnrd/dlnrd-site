@@ -1,0 +1,78 @@
+---
+import "../styles/global.css"
+import { getCollection } from 'astro:content';
+
+const { limit, featured } = Astro.props || {};
+let projects = await getCollection('projects');
+
+if (featured && Array.isArray(featured) && featured.length > 0) {
+  const map = new Map(projects.map(p => [p.slug, p]));
+
+  projects = featured.map(id => map.get(id)).filter(Boolean);
+}
+
+else if (limit) {
+  projects = projects.slice(0, limit);
+}
+---
+
+<table>
+  {projects.map(project => (
+    <tr class="project-row">
+      <td class="project-title">
+        <a href={`/projects/${project.slug}/`}>{project.data.title}</a>
+      </td>
+
+      <td class="project-summary" colspan={project.data.tags ? 1 : 2}>
+        {project.data.summary}
+      </td>
+
+      {project.data.tags && (
+        <td class="project-tags">
+          {project.data.tags.join(", ")}
+        </td>
+      )}
+    </tr>
+  ))}
+</table>
+
+<style>
+  table {
+    /* padding: 1rem 0rem; */
+  }
+
+  td {
+    /* border: 1px solid #333; */
+    /* padding: 2px 0.5rem; */
+    vertical-align: top;
+  }
+
+  .project-row {
+    align-items: center;
+  }
+
+  .project-title a {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .project-title a:hover {
+    background-color: var(--primary-color);
+    color: var(--primary-text);
+    text-decoration: none;
+  }
+
+  .project-summary {
+    color: var(--primary-text);
+    /* font-size: 0.9rem; */
+    margin: 0.5rem;
+    padding-left: 3rem;
+  }
+
+  .project-tags {
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    margin: 0.5rem;
+  }
+</style>
+

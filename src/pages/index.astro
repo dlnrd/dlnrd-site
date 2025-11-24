@@ -1,11 +1,16 @@
 ---
 import DefaultLayout from '../components/DefaultLayout.astro'
-import Header from '../components/Header.astro'
-
-import ProjectGrid from '../components/ProjectGrid.astro'
+import Introduction from '../components/Introduction.astro'
+import ProjectSwapper from '../components/ProjectSwapper.astro'
+import PostList from '../components/PostList.astro'
+import Links from '../components/Links.astro'
+import LastUpdated from '../components/LastUpdated.astro'
 ---
 
 <DefaultLayout title="dlnrd.dev">
-	<Header />
-	<ProjectGrid limit={2}/>
+	<Introduction />
+	<ProjectSwapper featured={["solsa","dlnrd-site"]}/>
+	<PostList limit={5}/>
+	<Links />
+	<LastUpdated />
 </DefaultLayout>

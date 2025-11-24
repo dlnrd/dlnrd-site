@@ -1,37 +1,47 @@
 ---
-
 import '../styles/global.css'
 import ThemeToggle from '../components/ThemeToggle.astro'
-
 ---
 
+<header>
+  <a href="/" class="logo">dlnrd</a>
+
+  <nav>
+    <ul id="nav-menu">
+      <li><a href="/projects">[projects]</a></li>
+      <li><a href="/posts">[posts]</a></li>
+      <li><a href="/photos">[photos]</a></li>
+      <li><ThemeToggle /></li>
+
+    </ul>
+  </nav>
+</header>
+
 <style>
-  /* Header container */
   header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 0.5rem 2rem;
-    background-color: var(--bg-color);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: var(--primary-bg);
     position: sticky;
     top: 0;
     z-index: 100;
   }
 
-  /* Site title/logo */
   .logo {
     font-weight: 700;
     font-size: 2rem;
     color: var(--primary-text);
     text-decoration: none;
+    padding-right: 1.5rem;
   }
 
-  /* Navigation menu */
   nav ul {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 1rem;
     margin: 0;
     padding: 0;
   }
@@ -48,19 +58,6 @@ import ThemeToggle from '../components/ThemeToggle.astro'
     color: var(--primary-color);
   }
 
-  /* Mobile menu (optional, simple toggle) */
-  @media (max-width: 768px) {
-    nav ul {
-      flex-direction: column;
-      display: none;
-      background: white;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      width: 200px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
     nav ul.active {
       display: flex;
     }
@@ -75,26 +72,3 @@ import ThemeToggle from '../components/ThemeToggle.astro'
     display: none;
   }
 </style>
-
-<header>
-  <a href="/" class="logo">dlnrd</a>
-
-  <nav>
-    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
-    <ul id="nav-menu">
-      <li><a href="/projects">portfolio</a></li>
-      <li><a href="/posts">posts</a></li>
-      <li><a href="/photos">photos</a></li>
-      <li><a href="/about">about</a></li>
-      <li><ThemeToggle /></li>
-
-    </ul>
-  </nav>
-</header>
-
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById('nav-menu');
-    menu.classList.toggle('active');
-  }
-</script>

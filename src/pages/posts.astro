@@ -1,0 +1,16 @@
+---
+import DefaultLayout from '../components/DefaultLayout.astro'
+import Textbox from '../components/Textbox.astro'
+import PostList from '../components/PostList.astro'
+import Links from '../components/Links.astro'
+import LastUpdated from '../components/LastUpdated.astro'
+---
+
+<DefaultLayout title={"dlnrd.dev posts"}>
+    <Textbox>
+    <p>There isn't any rhyme or reason to these. My structured/unstructured thoughts :)</p>
+    </Textbox>
+  <PostList />
+  <Links />
+  <LastUpdated />
+</DefaultLayout>

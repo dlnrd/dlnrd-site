@@ -2,10 +2,16 @@
 import { getCollection } from 'astro:content';
 import ProjectCard from '../components/ProjectCard.astro';
 
-const { limit } = Astro.props || {};
+const { limit, featured } = Astro.props || {};
 let projects = await getCollection('projects');
 
-if (limit) {
+if (featured && Array.isArray(featured) && featured.length > 0) {
+  const map = new Map(projects.map(p => [p.slug, p]));
+
+  projects = featured.map(id => map.get(id)).filter(Boolean);
+}
+
+else if (limit) {
   projects = projects.slice(0, limit);
 }
 ---
@@ -21,8 +27,7 @@ if (limit) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    padding: 2rem;
-    max-width: 1200px;
+    padding: 0rem 2rem;
     margin: 0 auto;
   }
 </style>

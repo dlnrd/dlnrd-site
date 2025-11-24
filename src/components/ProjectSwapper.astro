@@ -1,0 +1,85 @@
+---
+import ProjectGrid from "./ProjectGrid.astro";
+import ProjectList from "./ProjectList.astro";
+
+const { featured } = Astro.props;
+---
+
+<div id="project-switcher">
+  
+  <div class="project-header"> 	
+    <h3>{featured ? "Featured Projects:" : "All Projects:"}</h3>
+    <button id="view-toggle">
+      <svg class="icon-grid" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M340-540H200q-33 0-56.5-23.5T120-620v-140q0-33 23.5-56.5T200-840h140q33 0 56.5 23.5T420-760v140q0 33-23.5 56.5T340-540Zm-140-80h140v-140H200v140Zm140 500H200q-33 0-56.5-23.5T120-200v-140q0-33 23.5-56.5T200-420h140q33 0 56.5 23.5T420-340v140q0 33-23.5 56.5T340-120Zm-140-80h140v-140H200v140Zm560-340H620q-33 0-56.5-23.5T540-620v-140q0-33 23.5-56.5T620-840h140q33 0 56.5 23.5T840-760v140q0 33-23.5 56.5T760-540Zm-140-80h140v-140H620v140Zm140 500H620q-33 0-56.5-23.5T540-200v-140q0-33 23.5-56.5T620-420h140q33 0 56.5 23.5T840-340v140q0 33-23.5 56.5T760-120Zm-140-80h140v-140H620v140ZM340-620Zm0 280Zm280-280Zm0 280Z"/></svg>
+  
+      <svg class="icon-list" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M360-200v-80h480v80H360Zm0-240v-80h480v80H360Zm0-240v-80h480v80H360ZM200-160q-33 0-56.5-23.5T120-240q0-33 23.5-56.5T200-320q33 0 56.5 23.5T280-240q0 33-23.5 56.5T200-160Zm0-240q-33 0-56.5-23.5T120-480q0-33 23.5-56.5T200-560q33 0 56.5 23.5T280-480q0 33-23.5 56.5T200-400Zm0-240q-33 0-56.5-23.5T120-720q0-33 23.5-56.5T200-800q33 0 56.5 23.5T280-720q0 33-23.5 56.5T200-640Z"/></svg>
+    </button>
+  </div>
+
+  <div id="grid-view">
+    <ProjectGrid {...Astro.props}/>
+  </div>
+
+  <div id="list-view" hidden>
+    <ProjectList {...Astro.props}/>
+  </div>
+</div>
+
+<script client:load>
+  const btn = document.getElementById("view-toggle");
+  const grid = document.getElementById("grid-view");
+  const list = document.getElementById("list-view");
+
+  const iconGrid = document.querySelector(".icon-grid");
+  const iconList = document.querySelector(".icon-list");
+
+  function updateIcons(showingGrid) {
+    iconGrid.style.display = showingGrid ? "none" : "block";
+    iconList.style.display = showingGrid ? "block" : "none";
+  }
+
+  // initial icon state
+  updateIcons(true);
+
+  btn.addEventListener("click", () => {
+    const showingGrid = !grid.hidden;
+
+    grid.hidden = showingGrid;
+    list.hidden = !showingGrid;
+
+    updateIcons(!showingGrid);
+  });
+</script>
+
+<style>
+  #view-toggle {
+    background: none;
+    border: 0.2rem solid var(--primary-color);
+    border-radius: 5rem;
+    padding: 0.2rem 0.3rem;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #view-toggle svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--primary-text);
+  }
+
+  .icon-list {
+    display: none;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .project-header h3 {
+    vertical-align: bottom;
+  }
+</style>

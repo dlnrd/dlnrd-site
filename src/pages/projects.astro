@@ -1,11 +1,16 @@
 ---
 import DefaultLayout from '../components/DefaultLayout.astro';
-import Header from '../components/Header.astro';
-
-import ProjectGrid from '../components/ProjectGrid.astro';
+import ProjectSwapper from '../components/ProjectSwapper.astro';
+import Textbox from '../components/Textbox.astro';
+import Links from '../components/Links.astro'
+import LastUpdated from '../components/LastUpdated.astro'
 ---
 
 <DefaultLayout title={"dlnrd.dev projects"}>
-	<Header />
-    <ProjectGrid />
+  <Textbox>
+    <p>Here are all of my projects. Feel free to swap between grid and list views!</p>
+  </Textbox>
+  <ProjectSwapper />
+  <Links />
+  <LastUpdated />
 </DefaultLayout>

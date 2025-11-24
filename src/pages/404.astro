@@ -1,0 +1,48 @@
+---
+import DefaultLayout from "../components/DefaultLayout.astro"
+---
+
+<DefaultLayout>
+  <div class="error-container">
+    <h1>Oops, you've got somewhere that doesn't exist.</h1>
+    <h3>Go back to where you just were or go to the homepage :)</h3>
+    <div class="button-row">
+      <button onclick="window.history.back()">
+	<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#D9D9D9"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>
+      </button>
+      <button onclick="window.location.href='/'">
+	<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#D9D9D9"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+      </button>
+    </div>
+  </div>
+</DefaultLayout>
+
+<style>
+  
+  .error-container {
+    margin: 0 auto;
+    padding: 0.5rem 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  button {
+    background: none;
+    border: 0.4rem solid var(--primary-color);
+    border-radius: 10rem;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button svg{
+    width: 3rem;
+    height: 3rem;
+    fill: var(--primary-text)
+  }
+</style>
