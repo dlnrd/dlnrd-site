@@ -1,27 +1,44 @@
 ---
 import '../styles/global.css'
-import Header from '../components/Header.astro';
+import Header from '../components/Header.astro'
 
 const { title } = Astro.props;
 ---
 
-<html lang="en" data-theme={Astro.cookies.get('theme') ?? 'light'}>
+<html lang="en" class="no-theme-transition">
   <head>
+    <script is:inline>
+      (function() {
+        try {
+          const cookieMatch = document.cookie.match(/theme=(dark|light)/);
+          const cookieTheme = cookieMatch ? cookieMatch[1] : null;
+
+          const systemTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          const theme = cookieTheme || systemTheme;
+
+          document.documentElement.setAttribute('data-theme', theme);
+
+          window.addEventListener("DOMContentLoaded", () => {
+            document.documentElement.classList.remove("no-theme-transition");
+          });
+        } catch (e) {}
+      })();
+    </script>
+
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-        <title>{title}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>{title}</title>
   </head>
-  
+
   <body>
     <Header />
-
     <main>
-      <slot/>
+      <slot />
     </main>
   </body>
 </html>

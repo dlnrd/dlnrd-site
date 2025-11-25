@@ -2,13 +2,9 @@
 import { execSync } from 'node:child_process';
 
 let lastCommitDate = '';
-
 try {
-  lastCommitDate = execSync('git log -1 --format=%cd --date=iso', {
-    encoding: 'utf-8'
-  }).trim();
-} catch (err) {
-  console.error('Error fetching last git commit date:', err);
+  lastCommitDate = execSync('git log -1 --format=%cd --date=iso', { encoding: 'utf-8' }).trim();
+} catch {
   lastCommitDate = new Date().toISOString();
 }
 
@@ -18,20 +14,11 @@ const formattedDate = new Date(lastCommitDate).toLocaleString("en-GB", {
   day: "numeric",
   hour: "2-digit",
   minute: "2-digit",
-  // second: "2-digit",
   hour12: false,
   timeZone: "Europe/London"
 });
+
 ---
-
 <div class="last-updated">
-Last updated: {formattedDate} [GMT]
+  Last updated: {formattedDate} [GMT]
 </div>
-
-<style>
-  .last-updated {
-    font-size: 0.75rem;
-    color: var(--secondary-text);
-    margin: 0.5rem 0;
-  }
-</style>

@@ -1,17 +1,16 @@
 @import "normalize.css";
 @import "./markdown.css";
 
-:root  {
+:root[data-theme="light"]  {
   --primary-bg: #E7E7E7;
   --secondary-bg: #D2D2D2;
   --primary-text: #3D3D3D;
   --secondary-text: #525252;
   --primary-color: #D9822B;
   --secondary-color: #9E70F3; /* tmp */
-
 }
 
-[data-theme="dark"] {
+:root[data-theme="dark"] {
   --primary-bg: #292929;
   --secondary-bg: #3B3B3B;
   --primary-text: #EBEBEB;
@@ -21,8 +20,7 @@
 }
 
 * {
-  transition: background-color 0.2s ease, color 0.2s ease;
-  /* transition: none; */
+  transition: background-color 0.2s ease, color 0.2s ease, border 0.2s ease, fill 0.2s ease;
 }
 
 body {
@@ -45,13 +43,4 @@ main {
 
 a {
   color: var(--primary-color);
-}
-
-.breakbody {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
