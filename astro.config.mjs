@@ -3,6 +3,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://dlnrd.github.io/dlnrd-site',
-    base: '/dlnrd-site/',
+    site: 'https://dlnrd.dev',
+    base: '/',
 });
