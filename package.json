@@ -11,5 +11,12 @@
   "dependencies": {
     "astro": "^5.15.4",
     "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  },
+  "scripts": {
+    "build": "astro build",
+    "deploy": "gh-pages -d dist"
   }
 }
