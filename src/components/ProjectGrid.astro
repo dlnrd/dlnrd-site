@@ -5,6 +5,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 const { limit, featured } = Astro.props || {};
 let projects = await getCollection('projects');
 
+projects = projects.filter(p => p.data.published);
 if (featured && Array.isArray(featured) && featured.length > 0) {
   const map = new Map(projects.map(p => [p.slug, p]));
 
