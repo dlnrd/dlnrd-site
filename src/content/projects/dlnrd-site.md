@@ -8,6 +8,7 @@ tags:
     - HTML 
     - CSS
     - JS
+    - Github Actions
 ---
 
 # dlnrd.dev
@@ -29,3 +30,8 @@ I wanted it to be easy to develop, maintain and update with minimal use of large
 If you require more interactivity, Astro is fully compatible with lots of existing web frameworks React/Vue/Svelte which can be used simultaneously and only when needed and will automatically only include the required packages to make it as lightweight as possible.
 
 Astro claims to be for "content-driven" websites, and from my experience, it actually delivers. It has automatic file based routing for content pages with very good compatibility with Markdown/MDX (the page you're reading is a markdown file rendered through Astro, with some CSS tweaks).
+## Features
+### Light/Dark mode
+Using the sun/moon button on the header, you can toggle between light and dark mode. On first viewing of the site it will default to your devices default colour scheme but uses cookies to remember if you've changed it.
+### Grid/List view
+You can swap between list and grid view of the projects on either the home page or projects tab. Mostly personal preference, list will save some space as it doesn't display thumbnails for the projects. Mostly personal preference, list will save some space as it doesn't display thumbnails for the projects.
