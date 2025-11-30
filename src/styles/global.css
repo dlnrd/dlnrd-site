@@ -38,7 +38,7 @@ main {
   margin: 0 auto;
   padding: 0 1rem;
   max-width: 1000px;
-  width: clamp(100%, 75vw, 75%);
+  width: clamp(85%, 85vw, 100%);
 }
 
 a {
