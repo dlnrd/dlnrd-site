@@ -3,72 +3,148 @@ import '../styles/global.css'
 import ThemeToggle from '../components/ThemeToggle.astro'
 ---
 
-<header>
+<header class="desktop-header">
   <a href="/" class="logo">dlnrd</a>
-
-  <nav>
-    <ul id="nav-menu">
+  <nav class="desktop-nav">
+    <ul>
       <li><a href="/projects">[projects]</a></li>
       <li><a href="/posts">[posts]</a></li>
       <li><a href="/photos">[photos]</a></li>
-      <li><ThemeToggle /></li>
-
     </ul>
   </nav>
+  <ThemeToggle />
 </header>
 
+<header class="mobile-header">
+  <a href="/" class="logo">dlnrd</a>
+  <button id="menu-toggle" class="menu-button">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#D9D9D9"><path d="M100.78-676.04v-106h758.44v106H100.78Zm0 498.08v-106h758.44v106H100.78Zm0-249.04v-106h758.44v106H100.78Z"/></svg>
+  </button>
+  <ThemeToggle />
+</header>
+
+<nav id="mobile-nav" class="mobile-nav">
+  <ul>
+    <li><a href="/projects">[projects]</a></li>
+    <li><a href="/posts">[posts]</a></li>
+    <li><a href="/photos">[photos]</a></li>
+  </ul>
+</nav>
+
+<script>
+  document.getElementById("menu-toggle").addEventListener("click", () => {
+    document.getElementById("mobile-nav").classList.toggle("open");
+  });
+</script>
+
 <style>
-  header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem 2rem;
-    background-color: var(--primary-bg);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary-bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-  .logo {
-    font-weight: 700;
-    font-size: 2rem;
-    color: var(--primary-text);
-    text-decoration: none;
-    padding-right: 1.5rem;
-  }
+.logo {
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--primary-text);
+  text-decoration: none;
+}
 
-  nav ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
-  }
+.desktop-header {
+  display: flex;
+}
 
-  nav a {
-    text-decoration: none;
-    color: var(--primary-text);
-    font-weight: 600;
-    font-size: 1.5rem;
-    transition: color 0.2s ease;
-  }
+.desktop-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
 
-  nav a:hover {
-    color: var(--primary-color);
-  }
+.desktop-nav a {
+  text-decoration: none;
+  color: var(--primary-text);
+  font-weight: 600;
+  font-size: 1.4rem;
+}
 
-    nav ul.active {
-      display: flex;
-    }
+.desktop-nav a:hover {
+  color: var(--primary-color);
+}
 
-    .menu-toggle {
-      display: block;
-      cursor: pointer;
-    }
-  }
+.mobile-header {
+  display: none;
+}
 
-  .menu-toggle {
+.menu-button {
+  background: none;
+  border: 0.2rem solid var(--primary-color);
+  border-radius: 5rem;
+  padding: 0.2rem 0.3rem;
+  cursor: pointer;
+}
+
+.menu-button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: var(--primary-text);
+  display: block;
+}
+
+.mobile-nav {
+  display: none;
+  background: var(--primary-bg);
+  padding-bottom: 0.75rem;
+}
+
+.mobile-nav.open {
+  display: block;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobile-nav a {
+  text-decoration: none;
+  color: var(--primary-text);
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.mobile-nav a:hover {
+  color: var(--primary-color);
+}
+
+@media (max-width: 700px) {
+  .desktop-header {
     display: none;
   }
+  .mobile-header {
+    display: flex;
+  }
+}
+
+@media (min-width: 701px) {
+  .mobile-header {
+    display: none;
+  }
+  .mobile-nav {
+    display: none !important;
+  }
+}
 </style>
