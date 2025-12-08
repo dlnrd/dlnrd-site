@@ -1,13 +1,13 @@
 ---
 title: "solsa"
 summary: "Static analysis tool to refactor gas-inefficient Solidity smart contracts"
-image: ""
+image: "/projects/solsa/cover1.jpg"
 published: true
 tags:
     - Go
     - Solidity
 ---
-# solsa
+# [solsa](https://github.com/dlnrd/solsa)
 Command-line Static Analyzer Tool for Solidity Smart Contracts
 ## Abstract
 As blockchain-based technologies like cryptocurrencies, decentralised finance and non-fungible tokens (NFTs) grow in popularity, so does the demand for Solidity developers for smart contract development. One often overlooked aspect of smart contracts is gas usage, which refers to the computational cost required to execute smart contracts on the Ethereum blockchain. Reducing gas usage is crucial for cost efficiency, network scalability, and minimising the environmental impact of blockchain applications and due to the unique complexities of Solidity and smart contract programming, many developers may struggle or aren’t bothered or aware to optimise their smart contracts manually. 
@@ -163,3 +163,14 @@ contract EmployeeInfo {
   }
 }
 ```
+
+## GoReportCard
+[GoReportCard](www.goreportcard.com) is a web application that generates a report on the quality of an open source Go project. It uses a variety of highly-regarded tools to give a rating/grade to your Go project including gocyclo for ensuring low cyclomatic complexity, govet for common issues like deadcode, unsafe pointers and boolean redundancies, and golint for following best practice styling guides and more. 
+
+Although GoReportCard is primarily a web app hosted at [here](www.goreportcard.com), in the Github repository, a CLI version is also included for local and private repositories. 
+![GoReportCard](/projects/solsa/goreportcard.jpg)
+Above shows the results of GoReportCard analysis of the Solsa project which scores an overall A+ for the project, the only issue found was in it’s license evaluation which fails due to not having a LICENSE file in the repo. Getting A+ shows my project has passed a trusted and comprehensive quality check based on factors such as readability, maintainability, test coverage, and follows best practices in Go. 
+## Solsa Performance 
+To evaluate the performance of Solsa and compare against the LLM, the dataset I’ll be using is solidity-blockchains-dataset (Shuttleworth, 2025), which is a Github repository containing a large collection of real-world solidity contracts that are deployed to the Ethereum network. Using the same contracts between methods will allow for an fair comparison.  The contracts in the dataset contain a range of applications and uses, from cryptocurrencies, decentralised voting systems and NFTs with a range of contract sizes as small as 6 lines of code to 6355 lines of code.
+![Performance](/projects/solsa/solsa-performance.jpg)
+Above shows Solsa’s performance tested on 3182 available Solidity smart contracts from the solidity-blockchains-dataset (SBD), identifying a total of 499 gas-inefficient patterns and successfully refactored 416 of the patterns identified. The blue represents the gas-inefficient contracts Solsa identified as being optimisable with the orange being the number of contracts that Solsa could verifiably refactor. This distinction between verified and unverified refactoring is due to the Go module used to convert the modified AST back to source code (a fork of Solgo from 4.2.3) as it would fail on some contracts (I believe) due to not covering the full scope of the Solidity language and was unfortunantely out of scope for the project to fix. I believe the refactorings still occurred however without manually checking, it was unfeasible to verify if the contracts had been refactored sucessfully.

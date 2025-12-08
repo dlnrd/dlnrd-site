@@ -1,7 +1,7 @@
 ---
 title: "dlnrd.dev"
 summary: "My personal website (that you're likely on)"
-image: ""
+image: "/projects/dlnrd-site/cover.jpg"
 published: true
 tags:
     - Astro
@@ -11,7 +11,7 @@ tags:
     - Github Actions
 ---
 
-# dlnrd.dev
+# [dlnrd.dev](https://github.com/dlnrd/dlnrd-site)
 #### My personal porfolio website/place for stuff I want to share. Built with Astro.
 ## Goals for the project:
 - Lightweight/Performant
@@ -32,6 +32,11 @@ If you require more interactivity, Astro is fully compatible with lots of existi
 Astro claims to be for "content-driven" websites, and from my experience, it actually delivers. It has automatic file based routing for content pages with very good compatibility with Markdown/MDX (the page you're reading is a markdown file rendered through Astro, with some CSS tweaks).
 ## Features
 ### Light/Dark mode
+![lightdark](/projects/dlnrd-site/light-dark.jpg)
 Using the sun/moon button on the header, you can toggle between light and dark mode. On first viewing of the site it will default to your devices default colour scheme but uses cookies to remember if you've changed it.
 ### Grid/List view
 You can swap between list and grid view of the projects on either the home page or projects tab. Mostly personal preference, list will save some space as it doesn't display thumbnails for the projects. Mostly personal preference, list will save some space as it doesn't display thumbnails for the projects.
+## Deployment
+Previously utilising the npm module `gh-pages` to manage deployment of the site to Github Pages, I've since moved to using Github Actions to automatically rebuild and deploy the site when pushing to the repo. Doing so removed the necessity to have a main and dev branch (as `gh-pages` deploys all code regardless of if it's been commit or not), alongside removing the publicly available gh-pages branch for the built static site and simplified the build and deployment process dramatically.
+
+The Github Action script can be found <a href="https://github.com/dlnrd/dlnrd-site/blob/main/.github/workflows/deploy.yml">here</a>.
