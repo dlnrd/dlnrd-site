@@ -1,3 +1,7 @@
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border 0.2s ease, fill 0.2s ease;
+}
+
 .markdown img {
   max-width: 700px;
   width: 100%;
@@ -15,4 +19,20 @@
   background-color: var(--primary-color);
   color: var(--primary-text);
   text-decoration: none;
+}
+
+.markdown table {
+    border-collapse: collapse;
+    color: var(--primary-text);
+    background-color: var(--primary-bg);
+}
+
+.markdown th, td {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #525252; /* high contrast in light, low contrast in dark */
+}
+
+.markdown th {
+    background-color: var(--secondary-bg);
+    color: var(--primray-text);
 }
