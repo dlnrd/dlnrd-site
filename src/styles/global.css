@@ -1,5 +1,4 @@
 @import "normalize.css";
-@import "./markdown.css";
 
 :root[data-theme="light"]  {
   --primary-bg: #E7E7E7;
